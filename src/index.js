@@ -62,12 +62,15 @@ client.on('message', async (message) => {
     if (phraseBank.hasGuild(message.guild.id)) {
       let phrases = phraseBank.findMatches(message.guild.id, message.content)
       let mentionees = await db.getMentionees(message.guild.id, message.author.id, phrases)
+      if (!mentionees) {
+        return
+      }
+      let guild = await db.getGuild(message.guild.id)
       mentionees.map(async (mentionee) => {
         if (mentionee.mode == 'dm') {
           let dmChannel = await client.users.get(mentionee.id).createDM()
           dmChannel.send(`<@${message.author.id}> mentioned you in <#${message.channel.id}>`)
         } else if (mentionee.mode == 'channel') {
-          let guild = await db.getGuild(message.guild.id)
           let channel = await client.channels.get(guild.channelId)
           channel.send(`<@${mentionee.id}>, @${message.member.nickname} mentioned you in <#${message.channel.id}>`)
         }
