@@ -1,4 +1,5 @@
 const Discord = require('discord.js')
+const http = require('http')
 const db = require('./db')
 const { add, remove, list, mode, name, channel, help } = require('../commands')
 const PhraseBank = require('./PhraseBank')
@@ -75,6 +76,8 @@ client.on('message', async (message) => {
 })
 
 client.login(process.env.TOKEN)
+
+http.createServer().listen(process.env.PORT)
 
 let phraseBank
 db.getGuildsWithPhrases().then((guildsWithPhrases) => {
