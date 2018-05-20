@@ -25,7 +25,7 @@ This is a discord bot that can mention you when specific phrases you set are use
 
     [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
-3. Invite it to a server at `https://discordapp.com/oauth2/authorize?client_id=<your bot client id>&scope=bot&permissions=19456`
+3. Invite it to a server at `https://discordapp.com/oauth2/authorize?client_id=<your bot client id>&scope=bot&permissions=3072`
 
 #### Privacy Policy
 
