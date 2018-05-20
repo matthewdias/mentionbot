@@ -120,25 +120,22 @@ module.exports = {
                      .distinct('users.id', 'mode', 'dmChannelId')
                      .where('users.guildId', guildId)
                      .join('phrases', function() {
-                       this.onIn('phrases.text', phrases)
+                       this.on('users.id', '=', 'phrases.userId').onIn('phrases.text', phrases)
                      }).union(function() {
                        this.distinct('users.id', 'mode', 'dmChannelId')
                            .from('users')
                            .where('users.guildId', guildId)
                            .whereIn('users.nameOpt', ['nickname', 'both'])
-                           .join('phrases', function() {
-                             this.onIn('users.nickname', phrases)
-                           }).union(function() {
+                           .whereIn('users.nickname', phrases)
+                           .union(function() {
                              this.distinct('users.id', 'mode', 'dmChannelId')
                                  .from('users')
                                  .where('users.guildId', guildId)
                                  .whereIn('users.nameOpt', ['username', 'both'])
-                                 .join('phrases', function() {
-                                   this.onIn('users.username', phrases)
-                                 })
+                                 .whereIn('users.username', phrases)
                            })
                      })
-                     .whereNot('phrases.userId', authorId )
-                     .groupBy('users.id', 'phrases.id')
+                     .whereNot('phrases.userId', authorId)
+                     .groupBy('users.id')
   }
 }
