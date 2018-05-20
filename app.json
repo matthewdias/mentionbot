@@ -2,7 +2,7 @@
   "name": "mentionbot",
   "description": "Get mentioned when certain phrases (such as your name) appear in Discord messages",
   "repository": "https://github.com/matthewdias/mentionbot",
-  "addons": [{ "plan": "heroku-postgresql:hobby=dev" }],
+  "addons": [{ "plan": "heroku-postgresql:hobby-dev" }],
   "env": {
     "DATABASE_URL": {
       "description": "Postgres url. Don't set to use the provisioned Heroku Postgres",
