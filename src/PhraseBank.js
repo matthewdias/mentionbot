@@ -8,7 +8,7 @@ module.exports = class PhraseBank {
   }
 
   findMatches(guildId, text) {
-    return this.data[guildId].filter(phrase => text.includes(phrase))
+    return this.data[guildId].filter(phrase => new RegExp(`\\b${phrase}\\b`, 'i').test(text))
   }
 
   hasGuild(guildId) {
