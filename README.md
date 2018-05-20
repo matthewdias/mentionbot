@@ -1,4 +1,7 @@
+# ![][1]mentionbot
 This is a discord bot that can mention you when specific phrases you set are used by others in chat. It was created to replicate the highlight word functionality from Slack and Skype.
+
+[1]: https://i.imgur.com/hT4TxcL.png
 
 #### Commands
 
