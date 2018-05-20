@@ -23,7 +23,7 @@ This is a discord bot that can mention you when specific phrases you set are use
 1. Create a Discord bot [here](https://discordapp.com/developers/applications/me/create)
 2. Deploy the app
 
-  [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+    [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
 3. Invite it to a server at `https://discordapp.com/oauth2/authorize?client_id=<your bot client id>&scope=bot&permissions=19456`
 
