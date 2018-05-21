@@ -1,7 +1,7 @@
 const Discord = require('discord.js')
 const http = require('http')
 const db = require('./db')
-const { add, remove, list, mode, name, channel, help } = require('../commands')
+const { add, remove, list, mode, name, channel, init, help } = require('../commands')
 const PhraseBank = require('./PhraseBank')
 
 const client = new Discord.Client()
@@ -53,6 +53,8 @@ client.on('message', async (message) => {
         response = await name(message, command.replace('name ', ''))
       } else if (command.startsWith('channel ')) {
         response = await channel(message, command.replace('channel ', ''))
+      } else if (command.startsWith('init')) {
+        response = await init(message)
       } else response = help(client)
 
       await message.channel.send(response)

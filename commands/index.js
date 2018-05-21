@@ -5,5 +5,6 @@ module.exports = {
   remove: require('./remove'),
   list: require('./list'),
   channel: require('./channel'),
+  init: require('./init'),
   help: require('./help')
 }

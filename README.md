@@ -9,6 +9,7 @@ This is a discord bot that can mention you when specific phrases you set are use
 @mentionbot remove <1>, <2>, <3> : remove phrases that you should be mentioned for
 @mentionbot list : list your settings and added mention phrases
 @mentionbot channel #<channel name> : set channel for mentions to appear in (admin only)
+@mentionbot init : Manually initialize server if bot isn't working (admin only)
 @mentionbot help : display available commands
 ```
 
