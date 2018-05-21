@@ -9,6 +9,7 @@ module.exports = class PhraseBank {
 
   findMatches(guildId, text) {
     return this.data[guildId].filter(phrase => new RegExp(`\\b${phrase}\\b`, 'i').test(text))
+                             .map(phrase => phrase.toLowerCase())
   }
 
   hasGuild(guildId) {

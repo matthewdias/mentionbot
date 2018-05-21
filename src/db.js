@@ -121,21 +121,21 @@ module.exports = {
                      .where('users.guildId', guildId)
                      .join('phrases', function() {
                        this.on('users.id', 'phrases.userId')
-                           .onIn('phrases.text', phrases)
+                           .onIn(raw('LOWER(phrases.text)'), phrases)
                      }).whereNot('phrases.userId', authorId)
                      .union(function() {
                        this.distinct('users.id', 'mode', 'dmChannelId')
                            .from('users')
                            .where('users.guildId', guildId)
                            .whereIn('users.nameOpt', ['nickname', 'both'])
-                           .whereIn('users.nickname', phrases)
+                           .whereIn(raw('LOWER(users.nickname)'), phrases)
                            .whereNot('users.id', authorId)
                      }, function() {
                        this.distinct('users.id', 'mode', 'dmChannelId')
                            .from('users')
                            .where('users.guildId', guildId)
                            .whereIn('users.nameOpt', ['username', 'both'])
-                           .whereIn('users.username', phrases)
+                           .whereIn(raw('LOWER(users.username)'), phrases)
                            .whereNot('users.id', authorId)
                      }).groupBy('users.id')
   }
