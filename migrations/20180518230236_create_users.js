@@ -7,7 +7,7 @@ module.exports = {
       t.string('username')
       t.string('dm_channel_id')
       t.enu('mode', [ 'off', 'channel', 'dm' ]).defaultTo('off')
-      t.enu('name_opt', [ 'off', 'user', 'nickname', 'both' ]).defaultTo('off')
+      t.enu('name_opt', [ 'off', 'username', 'nickname', 'both' ]).defaultTo('off')
       t.timestamps()
 
       t.unique([ 'id', 'guild_id' ])
