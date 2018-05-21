@@ -75,12 +75,19 @@ client.on('message', async (message) => {
           return
         }
 
+        let mentioner
+        if (mentionee.mode == 'dm') {
+          mentioner = `<@${message.author.id}>`
+        } else {
+          mentioner = `@${message.member.nickname || message.author.username}`
+        }
+
         let embed = {
           description: message.content,
           color: message.member.displayColor,
           timestamp: message.createdAt,
           author: {
-            name: `${message.member.nickname || message.author.username}`,
+            name: mentioner,
             icon_url: message.author.avatarURL
           },
           footer: {
@@ -90,10 +97,10 @@ client.on('message', async (message) => {
 
         if (mentionee.mode == 'dm') {
           let dmChannel = await client.users.get(mentionee.id).createDM()
-          dmChannel.send(`@${message.member.nickname || message.author.username} mentioned you in <#${message.channel.id}>`, { embed })
+          dmChannel.send(`${mentioner} mentioned you in <#${message.channel.id}>`, { embed })
         } else if (mentionee.mode == 'channel') {
           let channel = await client.channels.get(guild.channelId)
-          channel.send(`<@${mentionee.id}>, @${message.member.nickname || message.author.username} mentioned you in <#${message.channel.id}>`, { embed })
+          channel.send(`<@${mentionee.id}>, ${mentioner} mentioned you in <#${message.channel.id}>`, { embed })
         }
       })
     }
