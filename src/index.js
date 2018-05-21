@@ -79,7 +79,7 @@ client.on('message', async (message) => {
           let channel = await client.channels.get(guild.channelId)
           let embed = {
                 "description": message.content,
-                "color": message.member.displayHexColor,
+                "color": message.member.displayColor,
                 "timestamp": message.createdAt,
                 "author": {
                            "name": `${message.member.nickname || message.author.username}`,
