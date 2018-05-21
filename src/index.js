@@ -77,7 +77,20 @@ client.on('message', async (message) => {
           dmChannel.send(`@${message.member.nickname || message.author.username} mentioned you in <#${message.channel.id}>`)
         } else if (mentionee.mode == 'channel') {
           let channel = await client.channels.get(guild.channelId)
-          channel.send(`<@${mentionee.id}>, @${message.member.nickname || message.author.username} mentioned you in <#${message.channel.id}>`)
+          let embed = {
+                "description": message.content,
+                "color": message.member.displayHexColor
+                "timestamp": message.createdAt,
+                "author": {
+                           "name": `${message.member.nickname || message.author.username}`,
+                           "icon_url": message.author.avatarURL
+                          },
+                "footer": {
+                           "text": `in #${message.channel.name}`
+                          }
+                };
+          channel.send(`<@${mentionee.id}>, @${message.member.nickname || message.author.username} mentioned you in <#${message.channel.id}>`, { embed })
+          
         }
       })
     }
