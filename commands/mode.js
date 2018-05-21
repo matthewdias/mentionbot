@@ -4,7 +4,6 @@ module.exports = async (message, arg) => {
   if (['channel', 'dm', 'off'].includes(arg)) {
     if (arg == 'channel') {
       let guild = await db.getGuild(message.guild.id)
-      console.log(guild)
       if (!guild.channelId) {
         return 'Admin has not yet set mentions channel'
       }
