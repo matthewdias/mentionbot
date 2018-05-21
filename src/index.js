@@ -53,7 +53,7 @@ client.on('message', async (message) => {
         response = await name(message, command.replace('name ', ''))
       } else if (command.startsWith('channel ')) {
         response = await channel(message, command.replace('channel ', ''))
-      } else response = help(message)
+      } else response = help(client)
 
       await message.channel.send(response)
       return
@@ -72,7 +72,7 @@ client.on('message', async (message) => {
         if (!permissions.has(Discord.Permissions.FLAGS.READ_MESSAGES)) {
           return
         }
-        
+
         let embed = {
           description: message.content,
           color: message.member.displayColor,
@@ -85,7 +85,7 @@ client.on('message', async (message) => {
             text: `in #${message.channel.name}`
           }
         };
-        
+
         if (mentionee.mode == 'dm') {
           let dmChannel = await client.users.get(mentionee.id).createDM()
           dmChannel.send(`@${message.member.nickname || message.author.username} mentioned you in <#${message.channel.id}>`, { embed })
