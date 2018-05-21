@@ -74,7 +74,7 @@ client.on('message', async (message) => {
         }
         if (mentionee.mode == 'dm') {
           let dmChannel = await client.users.get(mentionee.id).createDM()
-          dmChannel.send(`<@${message.author.id}> mentioned you in <#${message.channel.id}>`)
+          dmChannel.send(`@${message.member.nickname || message.author.username} mentioned you in <#${message.channel.id}>`)
         } else if (mentionee.mode == 'channel') {
           let channel = await client.channels.get(guild.channelId)
           channel.send(`<@${mentionee.id}>, @${message.member.nickname || message.author.username} mentioned you in <#${message.channel.id}>`)
