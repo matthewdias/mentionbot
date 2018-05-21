@@ -72,25 +72,26 @@ client.on('message', async (message) => {
         if (!permissions.has(Discord.Permissions.FLAGS.READ_MESSAGES)) {
           return
         }
+        
+        let embed = {
+          "description": message.content,
+          "color": message.member.displayColor,
+          "timestamp": message.createdAt,
+          "author": {
+             "name": `${message.member.nickname || message.author.username}`,
+             "icon_url": message.author.avatarURL
+          },
+          "footer": {
+             "text": `in #${message.channel.name}`
+          }
+        };
+        
         if (mentionee.mode == 'dm') {
           let dmChannel = await client.users.get(mentionee.id).createDM()
-          dmChannel.send(`@${message.member.nickname || message.author.username} mentioned you in <#${message.channel.id}>`)
+          dmChannel.send(`@${message.member.nickname || message.author.username} mentioned you in <#${message.channel.id}>`, { embed })
         } else if (mentionee.mode == 'channel') {
           let channel = await client.channels.get(guild.channelId)
-          let embed = {
-                "description": message.content,
-                "color": message.member.displayColor,
-                "timestamp": message.createdAt,
-                "author": {
-                           "name": `${message.member.nickname || message.author.username}`,
-                           "icon_url": message.author.avatarURL
-                          },
-                "footer": {
-                           "text": `in #${message.channel.name}`
-                          }
-                };
           channel.send(`<@${mentionee.id}>, @${message.member.nickname || message.author.username} mentioned you in <#${message.channel.id}>`, { embed })
-          
         }
       })
     }
