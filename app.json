@@ -5,7 +5,7 @@
   "addons": [{ "plan": "heroku-postgresql:hobby-dev" }],
   "env": {
     "DATABASE_URL": {
-      "description": "Postgres url. Don't set to use the provisioned Heroku Postgres",
+      "description": "Postgres connection url. Don't set to use the provisioned Heroku Postgres",
       "required": false
     },
     "CLIENT_ID": {
