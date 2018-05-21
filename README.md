@@ -16,7 +16,7 @@ This is a discord bot that can mention you when specific phrases you set are use
 
 ##### Use our hosted instance
 
-[Invite to server](https://discordapp.com/oauth2/authorize?client_id=446120627540328448&scope=bot&permissions=3072)
+[Invite to server](https://discordapp.com/oauth2/authorize?client_id=446120627540328448&scope=bot&permissions=19456)
 
 ##### Or host it yourself
 
@@ -25,7 +25,7 @@ This is a discord bot that can mention you when specific phrases you set are use
 
     [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
-3. Invite it to a server at `https://discordapp.com/oauth2/authorize?client_id=<your bot client id>&scope=bot&permissions=3072`
+3. Invite it to a server at `https://discordapp.com/oauth2/authorize?client_id=<your bot client id>&scope=bot&permissions=19456`
 
 #### Privacy Policy
 
