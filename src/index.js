@@ -67,6 +67,11 @@ client.on('message', async (message) => {
       }
       let guild = await db.getGuild(message.guild.id)
       mentionees.map(async (mentionee) => {
+        let recipient = message.guild.members.get(mentionee.id)
+        let permissions = recipient.permissionsIn(message.channel)
+        if (!permissions.has(Discord.Permissions.FLAGS.READ_MESSAGES)) {
+          return
+        }
         if (mentionee.mode == 'dm') {
           let dmChannel = await client.users.get(mentionee.id).createDM()
           dmChannel.send(`<@${message.author.id}> mentioned you in <#${message.channel.id}>`)
