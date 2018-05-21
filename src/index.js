@@ -74,15 +74,15 @@ client.on('message', async (message) => {
         }
         
         let embed = {
-          "description": message.content,
-          "color": message.member.displayColor,
-          "timestamp": message.createdAt,
-          "author": {
-             "name": `${message.member.nickname || message.author.username}`,
-             "icon_url": message.author.avatarURL
+          description: message.content,
+          color: message.member.displayColor,
+          timestamp: message.createdAt,
+          author: {
+            name: `${message.member.nickname || message.author.username}`,
+            icon_url: message.author.avatarURL
           },
-          "footer": {
-             "text": `in #${message.channel.name}`
+          footer: {
+            text: `in #${message.channel.name}`
           }
         };
         
