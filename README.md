@@ -55,7 +55,16 @@ Your messages are never stored. Anonymous data that contains your settings is st
 
 1. run `npm install`
 2. set environment variables
-  - `DATABASE_URL`: connection url to your database in the form `"postgres://<username>:<password>@<host>:<ip>/<db name>"`
+  - `DATABASE_URL`: connection url to your database in the form `"postgres://<username>:<password>@<host>:<port>/<db name>"`
   - `CLIENT_ID`: Discord bot client. Get one [here](https://discordapp.com/developers/applications/me/create)
   - `TOKEN`: Discord bot token. Get one [here](https://discordapp.com/developers/applications/me/create)
-3. run `npm start`
+3. Run migrations `npm install -g knex && knex migrate:latest`
+4. run `npm start`
+
+##### Docker
+1. Clone the repo `git clone https://github.com/matthewdias/mentionbot`
+2. Create postgres container `docker run --name=mentionbot_db -e POSTGRES_USER=mentionbot -e POSTGRES_PASSWORD=[password] -e POSTGRES_DB=mentionbot -v /var/lib/postgresql/data -d postgres:alpine`
+3. Build the docker container `docker build -t mentionbot .`
+4. Create the container `docker create --name=mentionbot --link mentionbot_db:mentionbot_db  -e DATABASE_URL=postgres://mentionbot:[password]@mentionbot_db/mentionbot -e CLIENT_ID=[clientid] -e TOKEN=[token] -d mentionbot`
+5. Run database migrations `docker exec -t -i mentionbot knex migrate:latest`
+6. Restart the container `docker restart mentionbot`
