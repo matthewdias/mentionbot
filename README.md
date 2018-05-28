@@ -62,15 +62,9 @@ Your messages are never stored. Anonymous data that contains your settings is st
 4. run `npm start`
 
 ##### Docker
-1. Clone the repo
-  - `git clone https://github.com/matthewdias/mentionbot`
-2. Create postgres database docker
-  - `docker run --name=mentionbot_db -e POSTGRES_USER=mentionbot -e POSTGRES_PASSWORD=[password] -e POSTGRES_DB=mentionbot -v /var/lib/postgresql/data -d postgres:alpine`
-3. Build the docker container
-  - `docker build -t mentionbot .`
-4. Create the contrainer
-  - `docker create --name=mentionbot --link mentionbot_db:mentionbot_db  -e DATABASE_URL=postgres://mentionbot:[password]@mentionbot_db/mentionbot -e CLIENT_ID=[clientid] -e TOKEN=[token] -d mentionbot`
-5. Run database migrations
-  - `docker exec -t -i mentionbot knex migrate:latest`
-6. Restart the container
-  - `docker restart mentionbot`
+1. Clone the repo `git clone https://github.com/matthewdias/mentionbot`
+2. Create postgres database docker `docker run --name=mentionbot_db -e POSTGRES_USER=mentionbot -e POSTGRES_PASSWORD=[password] -e POSTGRES_DB=mentionbot -v /var/lib/postgresql/data -d postgres:alpine`
+3. Build the docker container `docker build -t mentionbot .`
+4. Create the contrainer `docker create --name=mentionbot --link mentionbot_db:mentionbot_db  -e DATABASE_URL=postgres://mentionbot:[password]@mentionbot_db/mentionbot -e CLIENT_ID=[clientid] -e TOKEN=[token] -d mentionbot`
+5. Run database migrations `docker exec -t -i mentionbot knex migrate:latest`
+6. Restart the container `docker restart mentionbot`
