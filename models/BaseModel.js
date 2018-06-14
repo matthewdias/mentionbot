@@ -5,6 +5,7 @@ Model.knex(knex({
   client: 'pg',
   connection: process.env.DATABASE_URL || { user: 'postgres', database: 'mentionbot' },
   useNullasDefault: true,
+  debug: true,
   ...knexSnakeCaseMappers()
 }))
 

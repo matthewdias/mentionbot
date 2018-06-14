@@ -88,7 +88,7 @@ module.exports = {
     await findOrCreateUser(guildId, member)
     return await transaction(BaseModel.knex(), async (t) => {
       await Promise.all(phrases.map((text) => {
-        return Phrase.query().where({ guildId, userId, text }).delete()
+        return Phrase.query().where({ guildId, userId: member.id, text }).delete()
       }))
     })
   },
