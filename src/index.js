@@ -102,6 +102,8 @@ client.on('message', async (message) => {
   }
 })
 
+client.on('error', console.log)
+
 client.login(process.env.TOKEN)
 
 http.createServer().listen(process.env.PORT)
