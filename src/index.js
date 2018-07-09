@@ -4,6 +4,24 @@ const db = require('./db')
 const { add, remove, list, mode, name, channel, init, help } = require('../commands')
 const PhraseBank = require('./PhraseBank')
 
+const getEmbed = (message) => {
+  return {
+    title: 'Open in new tab',
+    url: 'https://discordapp.com/channels/' +
+      `${message.guild.id}/${message.channel.id}/${message.id}`,
+    description: message.content,
+    color: message.member.displayColor,
+    timestamp: message.createdAt,
+    author: {
+      name: message.author.username,
+      icon_url: message.author.avatarURL,
+    },
+    footer: {
+      text: `in #${message.channel.name}`
+    }
+  }
+}
+
 const client = new Discord.Client()
 
 client.on('ready', () => {
@@ -61,6 +79,20 @@ client.on('message', async (message) => {
       return
     }
 
+    let matches
+    if (matches =
+      message.content.match(/\b(https:\/\/discordapp.com\/channels\/\d+\/\d+\/\d+)\b/)) {
+      [...new Set(matches)].map(async (messageLink) => {
+        let [_, guildId, channelId, messageId] =
+          messageLink.match(/.*channels\/(\d+)\/(\d+)\/(\d+)/)
+
+        let channel = message.guild.channels.filter(channel => channel.id == channelId).first()
+        let linkedMessage = await channel.fetchMessage(messageId)
+
+        message.channel.send('', { embed: getEmbed(linkedMessage) })
+      })
+    }
+
     if (phraseBank.hasGuild(message.guild.id)) {
       let phrases = phraseBank.findMatches(message.guild.id, message.content)
       let mentionees = await db.getMentionees(message.guild.id, message.author.id, phrases)
@@ -75,21 +107,7 @@ client.on('message', async (message) => {
           return
         }
 
-        let embed = {
-          title: 'Open in new tab',
-          url: 'https://discordapp.com/channels/' +
-            `${message.guild.id}/${message.channel.id}/${message.id}`,
-          description: message.content,
-          color: message.member.displayColor,
-          timestamp: message.createdAt,
-          author: {
-            name: message.author.username,
-            icon_url: message.author.avatarURL,
-          },
-          footer: {
-            text: `in #${message.channel.name}`
-          }
-        };
+        let embed = getEmbed(message)
 
         if (mentionee.mode == 'dm') {
           let dmChannel = await client.users.get(mentionee.id).createDM()
