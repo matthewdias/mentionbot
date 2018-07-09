@@ -76,6 +76,9 @@ client.on('message', async (message) => {
         }
 
         let embed = {
+          title: 'Open in new tab',
+          url: 'https://discordapp.com/channels/' +
+            `${message.guild.id}/${message.channel.id}/${message.id}`,
           description: message.content,
           color: message.member.displayColor,
           timestamp: message.createdAt,
