@@ -10,12 +10,12 @@ const getEmbed = (message) => {
     url: 'https://discordapp.com/channels/' +
       `${message.guild.id}/${message.channel.id}/${message.id}`,
     description: message.content,
-    color: message.member.displayColor,
+    color: message.member ? message.member.displayColor : null,
     timestamp: message.createdAt,
-    author: {
+    author: message.author ? {
       name: message.author.username,
       icon_url: message.author.avatarURL,
-    },
+    } : null,
     footer: {
       text: `in #${message.channel.name}`
     }
