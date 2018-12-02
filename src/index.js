@@ -123,7 +123,10 @@ client.on('message', async (message) => {
   }
 })
 
-client.on('error', console.log)
+client.on('error', (error) => {
+  console.log(error.message)
+  client.login(process.env.TOKEN)
+})
 
 client.login(process.env.TOKEN)
 
