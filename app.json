@@ -13,6 +13,10 @@
     },
     "TOKEN": {
       "description": "Discord bot token. Get one at https://discordapp.com/developers/applications/me/create"
+    },
+    "SENTRY_DSN": {
+      "description": "Sentry reporting URL. Get one at https://sentry.io",
+      "required": false
     }
   }
 }

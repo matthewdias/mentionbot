@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/matthewdias/mentionbot#readme",
   "dependencies": {
+    "@sentry/node": "^5.4.3",
     "discord.js": "^11.3.2",
     "erlpack": "github:discordapp/erlpack",
     "knex": "^0.15.0",

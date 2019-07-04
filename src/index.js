@@ -3,6 +3,7 @@ const http = require('http')
 const db = require('./db')
 const { add, remove, list, mode, name, channel, init, help } = require('../commands')
 const PhraseBank = require('./PhraseBank')
+const Sentry = require('@sentry/node')
 
 const getEmbed = (message) => {
   return {
@@ -127,6 +128,8 @@ client.on('error', (error) => {
   console.log(error.message)
   client.login(process.env.TOKEN)
 })
+
+Sentry.init({ dsn: process.env.SENTRY_DSN })
 
 client.login(process.env.TOKEN)
 
