@@ -23,7 +23,7 @@
     "@sentry/node": "^5.4.3",
     "discord.js": "^11.3.2",
     "erlpack": "github:discordapp/erlpack",
-    "knex": "^0.15.0",
+    "knex": "^2.4.0",
     "objection": "^1.1.10",
     "pg": "^7.4.3",
     "uws": "^10.148.0",
